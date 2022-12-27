@@ -67,21 +67,16 @@ public class TicTacToe extends JFrame {
     }
 
     private boolean checkWin(char player) {
-        // sprawdź wiersze
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
                 return true;
             }
         }
-
-        // sprawdź kolumny
         for (int j = 0; j < 3; j++) {
             if (board[0][j] == player && board[1][j] == player && board[2][j] == player) {
                 return true;
             }
         }
-
-        // sprawdź skosy
         if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
             return true;
         }
