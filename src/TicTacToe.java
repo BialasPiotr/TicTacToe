@@ -46,6 +46,11 @@ public class TicTacToe extends JFrame {
                     if (board[i][j] == 0) {
                         board[i][j] = currentPlayer;
                         button.setText(String.valueOf(currentPlayer));
+                        if (currentPlayer == 'X') {
+                            button.setBackground(Color.RED);  
+                        } else {
+                            button.setBackground(Color.BLUE); 
+                        }
                         if (checkWin(currentPlayer)) {
                             JOptionPane.showMessageDialog(this, "Player " + currentPlayer + " wygrywa!");
                             resetGame();
@@ -65,8 +70,7 @@ public class TicTacToe extends JFrame {
             }
         }
     }
-
-    private boolean checkWin(char player) {
+        private boolean checkWin(char player) {
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
                 return true;
@@ -103,11 +107,11 @@ public class TicTacToe extends JFrame {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j].setText("");
+                buttons[i][j].setBackground(Color.WHITE); 
             }
         }
     }
-
-   public static void main(String[] args) {
+    public static void main(String[] args) {
         new TicTacToe();
     }
 }
