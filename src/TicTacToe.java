@@ -11,11 +11,15 @@ public class TicTacToe extends JFrame {
     private char currentPlayer = 'X';
     private char[][] board = new char[3][3];
     private JButton[][] buttons = new JButton[3][3];
+    private String player1Name = "Gracz 1";
+    private String player2Name = "Gracz 2";
 
     public TicTacToe() {
         super("Tic-Tac-Toe");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        getPlayerNames();
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3, 3));
@@ -39,6 +43,11 @@ public class TicTacToe extends JFrame {
         setVisible(true);
     }
 
+    private void getPlayerNames() {
+        player1Name = JOptionPane.showInputDialog(this, "Gracz 1, wprowadź swoją nazwę:");
+        player2Name = JOptionPane.showInputDialog(this, "Gracz 2, wprowadź swoją nazwę:");
+    }
+
     private void makeMove(JButton button) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -47,12 +56,11 @@ public class TicTacToe extends JFrame {
                         board[i][j] = currentPlayer;
                         button.setText(String.valueOf(currentPlayer));
                         if (currentPlayer == 'X') {
-                            button.setBackground(Color.RED);  
+                            button.setBackground(Color.RED);
                         } else {
-                            button.setBackground(Color.BLUE); 
+                            button.setBackground(Color.BLUE);
                         }
                         if (checkWin(currentPlayer)) {
-                            JOptionPane.showMessageDialog(this, "Player " + currentPlayer + " wygrywa!");
                             resetGame();
                         } else if (isFull()) {
                             JOptionPane.showMessageDialog(this, "draw!");
@@ -70,21 +78,42 @@ public class TicTacToe extends JFrame {
             }
         }
     }
-        private boolean checkWin(char player) {
+
+    private boolean checkWin(char player) {
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
+                if (player == 'X') {
+                    JOptionPane.showMessageDialog(this, player1Name + " wins!");
+                } else {
+                    JOptionPane.showMessageDialog(this, player2Name + " wins!");
+                }
                 return true;
             }
         }
         for (int j = 0; j < 3; j++) {
             if (board[0][j] == player && board[1][j] == player && board[2][j] == player) {
+                if (player == 'X') {
+                    JOptionPane.showMessageDialog(this, player1Name + " wins!");
+                } else {
+                    JOptionPane.showMessageDialog(this, player2Name + " wins!");
+                }
                 return true;
             }
         }
         if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
+            if (player == 'X') {
+                JOptionPane.showMessageDialog(this, player1Name + " wins!");
+            } else {
+                JOptionPane.showMessageDialog(this, player2Name + " wins!");
+            }
             return true;
         }
         if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+            if (player == 'X') {
+                JOptionPane.showMessageDialog(this, player1Name + " wins!");
+            } else {
+                JOptionPane.showMessageDialog(this, player2Name + " wins!");
+            }
             return true;
         }
         return false;
@@ -107,11 +136,12 @@ public class TicTacToe extends JFrame {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j].setText("");
-                buttons[i][j].setBackground(Color.WHITE); 
+                buttons[i][j].setBackground(null);
             }
         }
     }
+
     public static void main(String[] args) {
-        new TicTacToe();
+        TicTacToe game = new TicTacToe();
     }
 }
