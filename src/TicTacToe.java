@@ -4,10 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TicTacToe extends JFrame {
-
     private static final int WIDTH = 300;
     private static final int HEIGHT = 300;
-
     private char currentPlayer = 'X';
     private char[][] board = new char[3][3];
     private JButton[][] buttons = new JButton[3][3];
